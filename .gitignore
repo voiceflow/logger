@@ -1,3 +1,7 @@
+# Testing jigs and mocks for initial development
+jig/
+mock.js
+
 # Logs
 logs
 *.log
