@@ -67,6 +67,4 @@ describe('Caller identification', () => {
     expect(params[0].caller[0].trim().split(' ')[1]).to.eql('innerWrapper'); // Ensure the top of stack is the innerWrapper
     expect(params[0].caller[1].trim().split(' ')[1]).to.eql('xysbdwcc'); // Ensure the next level up is the random test function name
   });
-
-
 });
