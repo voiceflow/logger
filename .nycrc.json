@@ -1,0 +1,11 @@
+{
+  "exclude": [
+    "coverage/**",
+    "tests/**",
+    "scratch.js",
+    "index.js",
+    "*.js"
+  ],
+  "reporter": ["html", "text", "text-summary", "lcov"],
+  "all": true
+}
