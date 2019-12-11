@@ -6,19 +6,19 @@ const Caller = require('../../../lib/utils/caller');
 const { expect } = chai;
 
 describe('Caller identification', () => {
+  // Choose a random function name to test for equality
+  const hhbfksmr = (params) => {
+    // Add an inner wrapper to emulate the extra stack layer between logger and caller
+    const innerWrapper = () => {
+      Caller.identify(params);
+    };
+    innerWrapper();
+  };
+
   it('Identifies the calling function (no additional object merging)', () => {
     const params = [];
-    const stackTrace = false;
-    // Choose a random function name to test for equality
-    const hhbfksmr = () => {
-      // Add an inner wrapper to emulate the extra stack layer between logger and caller
-      const innerWrapper = () => {
-        Caller.identify(params, stackTrace);
-      };
-      innerWrapper();
-    };
 
-    hhbfksmr(); // Execute function under test
+    hhbfksmr(params); // Execute function under test
 
     expect(params[0]).to.have.property('caller');
     expect(params[0].caller.split(' ')[0]).to.eql('hhbfksmr'); // Make sure the function name is correct
@@ -30,23 +30,14 @@ describe('Caller identification', () => {
         persistent: 'dummy',
       },
     ];
-    const stackTrace = false;
-    // Choose a random function name to test for equality
-    const jtufblyh = () => {
-      // Add an inner wrapper to emulate the extra stack layer between logger and caller
-      const innerWrapper = () => {
-        Caller.identify(params, stackTrace);
-      };
-      innerWrapper();
-    };
 
-    jtufblyh(); // Execute function under test
+    hhbfksmr(params); // Execute function under test
 
     // Ensure that the object being merged retains its properties
     expect(params[0]).to.have.property('persistent');
     expect(params[0].persistent).to.eql('dummy');
     expect(params[0]).to.have.property('caller');
-    expect(params[0].caller.split(' ')[0]).to.eql('jtufblyh'); // Make sure the function name is correct
+    expect(params[0].caller.split(' ')[0]).to.eql('hhbfksmr'); // Make sure the function name is correct
   });
 
   it('Prints a stack trace if stackTrace flag is enabled', () => {
