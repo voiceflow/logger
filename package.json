@@ -1,7 +1,7 @@
 {
   "name": "@voiceflow/logger",
   "description": "Common logger for Voiceflow backend microservices",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Frank Gu <frank@voiceflow.com>",
   "dependencies": {
     "express-pino-logger": "^4.0.0",
@@ -69,7 +69,7 @@
     "lint:quiet": "yarn lint -- --quiet",
     "prepare": "fixpack",
     "send-coverage": "cat ./coverage/lcov.info | codacy-coverage",
-    "test": "nyc mocha --use_strict --exit \"tests/**/*.unit.js\" \"tests/**/*.it.js\" && yarn lint",
+    "test": "nyc mocha --use_strict --exit \"tests/**/*.unit.js\" \"tests/**/*.it.js\"",
     "unit": "mocha --use_strict --exit \"tests/**/*.unit.js\"",
     "update": "yarn install"
   }

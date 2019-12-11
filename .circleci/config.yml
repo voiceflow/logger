@@ -1,0 +1,68 @@
+version: 2.1
+
+executors:
+  node_11:
+    working_directory: ~/voiceflow # directory where steps will run
+    docker: # run the steps with Docker
+      - image: circleci/node:11 # ...with this image as the primary container; this is where all `steps` will run
+
+commands:
+  run_tests:
+    description: Run tests against codebase
+    parameters:
+      tests:
+        type: steps
+        default: []
+      saveCache:
+        type: boolean
+        default: false
+    steps:
+      - checkout # special step to check out source code to working directory
+      - run:
+          name: Add token
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+      - restore_cache: # special step to restore the dependency cache
+          key: cache-secrets-provider-{{ checksum "package.json" }}
+      - run:
+          name: yarn install packages
+          command: yarn
+      - when:
+          condition: << parameters.saveCache >>
+          steps:
+            - save_cache: # special step to save the dependency cache
+                key: cache-secrets-provider-{{ checksum "package.json" }}
+                paths:
+                  - ./node_modules
+      - steps: << parameters.tests >>
+
+jobs:
+  release:
+    executor: node_11
+    steps:
+      - checkout
+      - run: npm install fixpack
+      - run: git tag --merged production
+      - run: npx semantic-release@15
+  test: # runs not using Workflows must have a `build` job as entry point
+    executor: node_11
+    steps: # a collection of executable commands
+      - run_tests:
+          saveCache: true
+          tests:
+            - run:
+                name: (React Tests)
+                command: yarn test -- --detectOpenHandles --runInBand
+            - run:
+                name: (Code Style)
+                command: yarn lint:quiet    
+workflows:
+  version: 2
+  publish:
+    jobs:
+      - test
+      - release:
+          requires:
+            - test
+          filters:
+            branches:
+              only: production
