@@ -20,8 +20,8 @@ describe('Caller identification', () => {
 
     hhbfksmr(params); // Execute function under test
 
-    expect(params[0]).to.have.property('caller');
-    expect(params[0].caller.split(' ')[0]).to.eql('hhbfksmr'); // Make sure the function name is correct
+    expect(params[0]).to.have.property('stack');
+    expect(params[0].stack.split(' ')[0]).to.eql('hhbfksmr'); // Make sure the function name is correct
   });
 
   it('Identifies the calling function (with object merging)', () => {
@@ -36,8 +36,8 @@ describe('Caller identification', () => {
     // Ensure that the object being merged retains its properties
     expect(params[0]).to.have.property('persistent');
     expect(params[0].persistent).to.eql('dummy');
-    expect(params[0]).to.have.property('caller');
-    expect(params[0].caller.split(' ')[0]).to.eql('hhbfksmr'); // Make sure the function name is correct
+    expect(params[0]).to.have.property('stack');
+    expect(params[0].stack.split(' ')[0]).to.eql('hhbfksmr'); // Make sure the function name is correct
   });
 
   it('Prints a stack trace if stackTrace flag is enabled', () => {
@@ -53,9 +53,9 @@ describe('Caller identification', () => {
 
     xysbdwcc(); // Execute function under test
 
-    expect(params[0]).to.have.property('caller');
-    expect(params[0].caller).to.be.an('array');
-    expect(params[0].caller[0].trim().split(' ')[1]).to.eql('innerWrapper'); // Ensure the top of stack is the innerWrapper
-    expect(params[0].caller[1].trim().split(' ')[1]).to.eql('xysbdwcc'); // Ensure the next level up is the random test function name
+    expect(params[0]).to.have.property('stack');
+    expect(params[0].stack).to.be.an('array');
+    expect(params[0].stack[0].trim().split(' ')[1]).to.eql('innerWrapper'); // Ensure the top of stack is the innerWrapper
+    expect(params[0].stack[1].trim().split(' ')[1]).to.eql('xysbdwcc'); // Ensure the next level up is the random test function name
   });
 });

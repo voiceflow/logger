@@ -72,8 +72,8 @@ describe('Logger integration tests', () => {
       expect(parsedLogObj.level).to.equal(40);
       expect(parsedLogObj.msg).to.eql('test warn');
       expect(parsedLogObj.v).to.eql(1);
-      expect(parsedLogObj).to.have.property('caller');
-      expect(parsedLogObj.caller).to.be.an('string');
+      expect(parsedLogObj).to.have.property('stack');
+      expect(parsedLogObj.stack).to.be.an('string');
     });
 
     it('Logs errors', () => {
@@ -83,8 +83,8 @@ describe('Logger integration tests', () => {
       expect(parsedLogObj.level).to.equal(50);
       expect(parsedLogObj.msg).to.eql('test error');
       expect(parsedLogObj.v).to.eql(1);
-      expect(parsedLogObj).to.have.property('caller');
-      expect(parsedLogObj.caller).to.be.an('string');
+      expect(parsedLogObj).to.have.property('stack');
+      expect(parsedLogObj.stack).to.be.an('string');
     });
 
     it('Logs fatal errors', () => {
@@ -94,8 +94,8 @@ describe('Logger integration tests', () => {
       expect(parsedLogObj.level).to.equal(60);
       expect(parsedLogObj.msg).to.eql('test fatal');
       expect(parsedLogObj.v).to.eql(1);
-      expect(parsedLogObj).to.have.property('caller');
-      expect(parsedLogObj.caller).to.be.an('string');
+      expect(parsedLogObj).to.have.property('stack');
+      expect(parsedLogObj.stack).to.be.an('string');
     });
   });
 
