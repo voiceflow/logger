@@ -22,7 +22,7 @@ commands:
           name: Add token
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
       - restore_cache: # special step to restore the dependency cache
-          key: cache-secrets-provider-{{ checksum "package.json" }}
+          key: cache-logger-{{ checksum "package.json" }}
       - run:
           name: yarn install packages
           command: yarn
@@ -30,7 +30,7 @@ commands:
           condition: << parameters.saveCache >>
           steps:
             - save_cache: # special step to save the dependency cache
-                key: cache-secrets-provider-{{ checksum "package.json" }}
+                key: cache-logger-{{ checksum "package.json" }}
                 paths:
                   - ./node_modules
       - steps: << parameters.tests >>
