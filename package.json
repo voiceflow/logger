@@ -72,9 +72,6 @@
   },
   "main": "index.js",
   "prettier": "@voiceflow/prettier-config",
-  "release": {
-    "branch": "production"
-  },
   "repository": "git@github.com:voiceflow/logger.git",
   "scripts": {
     "build": "npm run clean && ttsc --project ./tsconfig.build.json",
