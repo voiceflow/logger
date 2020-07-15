@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { Logger } from '../../..';
+import Logger from '@/./';
 
 // Intercept stream and write it to a buffer instaed
 function captureStream(stream) {

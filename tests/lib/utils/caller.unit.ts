@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import Caller from '../../../lib/utils/caller';
+import Caller from '@/lib/utils/caller';
 
 describe('Caller identification', () => {
   // Choose a random function name to test for equality

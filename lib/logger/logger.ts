@@ -2,7 +2,7 @@ import Prettifier from '@voiceflow/pino-pretty';
 import expressPino from 'express-pino-logger';
 import pino from 'pino';
 
-import { Caller } from '../utils';
+import Caller from '@/lib/utils';
 
 const defaultConfigs = {
   level: 'info',
