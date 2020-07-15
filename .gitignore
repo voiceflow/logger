@@ -63,3 +63,9 @@ typings/
 # test files
 test.js
 package-lock.json
+
+# coverage files
+nyc_coverage/
+
+# TS Build
+build/

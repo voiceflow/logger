@@ -1,11 +1,8 @@
 {
-  "exclude": [
-    "coverage/**",
-    "tests/**",
-    "scratch.js",
-    "index.js",
-    "*.js"
-  ],
+  "extends": "@istanbuljs/nyc-config-typescript",
+  "include": ["lib/**"],
   "reporter": ["html", "text", "text-summary", "lcov"],
-  "all": true
+  "report-dir": "nyc_coverage",
+  "all": true,
+  "extension": [".ts"]
 }

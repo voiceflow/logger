@@ -1,9 +1,6 @@
-'use strict';
+import { expect } from 'chai';
 
-const chai = require('chai');
-const Caller = require('../../../lib/utils/caller');
-
-const { expect } = chai;
+import Caller from '@/lib/utils/caller';
 
 describe('Caller identification', () => {
   // Choose a random function name to test for equality
