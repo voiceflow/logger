@@ -10,7 +10,7 @@
     "experimentalDecorators": true,
     /* Strictness Checks */
     "alwaysStrict": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "noUnusedLocals": true,
     "noImplicitThis": true,
     "strictNullChecks": true,

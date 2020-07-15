@@ -66,3 +66,6 @@ package-lock.json
 
 # coverage files
 nyc_coverage/
+
+# TS Build
+build/

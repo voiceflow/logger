@@ -4,3 +4,4 @@ coverage
 nyc_coverage
 scratch.js
 /node_modules
+/build

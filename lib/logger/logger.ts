@@ -1,24 +1,39 @@
 import Prettifier from '@voiceflow/pino-pretty';
 import expressPino from 'express-pino-logger';
-import pino from 'pino';
+import pino, { Level, LoggerOptions, redactOptions } from 'pino';
 
 import Caller from '@/lib/utils';
 
-const defaultConfigs = {
+const defaultConfigs: vfLoggerConfig = {
   level: 'info',
   stackTrace: false,
   pretty: false,
 };
 
+export interface vfLoggerConfig {
+  level: Level;
+  stackTrace: boolean;
+  pretty: boolean;
+  redact?: string[] | redactOptions;
+}
+
 export default class Logger {
-  constructor(config) {
-    this.config = config != null ? config : defaultConfigs;
+  config: vfLoggerConfig;
+
+  baseLoggerConfig: LoggerOptions;
+
+  baseLogger: pino.Logger;
+
+  middlewareLogger: expressPino.HttpLogger;
+
+  constructor(config?: vfLoggerConfig) {
+    this.config = config || defaultConfigs;
     this.baseLoggerConfig = {
-      level: this.config.level || defaultConfigs.level,
+      level: config?.level || defaultConfigs.level,
       base: null,
     };
 
-    if (this.config.pretty) {
+    if (this.config?.pretty) {
       this.baseLoggerConfig.prettifier = Prettifier;
       this.baseLoggerConfig.prettyPrint = {
         levelFirst: true,
@@ -32,30 +47,30 @@ export default class Logger {
     });
   }
 
-  trace(...params: any[]): void {
-    this.baseLogger.trace(...params);
+  trace(msg: string, ...params: any[]): void {
+    this.baseLogger.trace(msg, ...params);
   }
 
-  debug(...params: any[]): void {
-    this.baseLogger.debug(...params);
+  debug(msg: string, ...params: any[]): void {
+    this.baseLogger.debug(msg, ...params);
   }
 
-  info(...params: any[]): void {
-    this.baseLogger.info(...params);
+  info(msg: string, ...params: any[]): void {
+    this.baseLogger.info(msg, ...params);
   }
 
   warn(...params: any[]): void {
     const logPayload = Caller.identify(params); // Full stack trace not needed for warnings
-    this.baseLogger.warn(...logPayload);
+    this.baseLogger.warn(logPayload[0], logPayload[1]);
   }
 
   error(...params: any[]): void {
-    const logPayload = Caller.identify(params, this.config.stackTrace);
-    this.baseLogger.error(...logPayload);
+    const logPayload = Caller.identify(params, this.config?.stackTrace);
+    this.baseLogger.error(logPayload[0], logPayload[1]);
   }
 
   fatal(...params: any[]): void {
-    const logPayload = Caller.identify(params, this.config.stackTrace);
-    this.baseLogger.fatal(...logPayload);
+    const logPayload = Caller.identify(params, this.config?.stackTrace);
+    this.baseLogger.fatal(logPayload[0], logPayload[1]);
   }
 }

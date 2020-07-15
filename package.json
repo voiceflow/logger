@@ -21,6 +21,7 @@
     "@voiceflow/eslint-config": "^2.0.4",
     "@voiceflow/git-branch-check": "^1.0.2",
     "@voiceflow/prettier-config": "^1.0.4",
+    "@zerollup/ts-transform-paths": "^1.7.18",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "codacy-coverage": "^3.4.0",
@@ -76,6 +77,8 @@
   },
   "repository": "git@github.com:voiceflow/logger.git",
   "scripts": {
+    "build": "npm run clean && ttsc --project ./tsconfig.build.json",
+    "clean": "rimraf build",
     "commit": "git-cz",
     "integration": "mocha --use_strict --exit \"tests/**/*.it.js\"",
     "lint": "eslint \"./**/*.{js,ts}\" --fix",

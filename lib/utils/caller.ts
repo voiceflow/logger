@@ -2,11 +2,11 @@ const STACKTRACE_OFFSET = 2;
 const LINE_OFFSET = 7;
 
 export default class Caller {
-  static identify(params, stackTrace = false) {
+  static identify(params: any[], stackTrace = false): string | string[] {
     const callStack = Error()
-      .stack.split('\n')
+      .stack?.split('\n')
       .slice(STACKTRACE_OFFSET);
-    const callFunction = callStack.filter((s) => !s.includes('node_modules/pino') && !s.includes('node_modules\\pino'))[1].substr(LINE_OFFSET);
+    const callFunction = callStack?.filter((s) => !s.includes('node_modules/pino') && !s.includes('node_modules\\pino'))[1].substr(LINE_OFFSET);
     const callerObj = {
       stack: stackTrace ? callStack : callFunction,
     };

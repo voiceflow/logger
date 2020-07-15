@@ -20,13 +20,14 @@ function captureStream(stream) {
 
 describe('Logger integration tests', () => {
   describe('Log level differentiation', () => {
-    let loggerInstance;
-    let stdoutInspector;
+    let loggerInstance: Logger;
+    let stdoutInspector: any;
     beforeEach(() => {
       stdoutInspector = captureStream(process.stdout); // Hook needs to be registered before the logger is instantiated
       loggerInstance = new Logger({
         stackTrace: false,
         level: 'trace',
+        pretty: false,
       });
     });
 
