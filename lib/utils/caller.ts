@@ -1,9 +1,7 @@
-'use strict';
-
 const STACKTRACE_OFFSET = 2;
 const LINE_OFFSET = 7;
 
-class Caller {
+export default class Caller {
   static identify(params, stackTrace = false) {
     const callStack = Error()
       .stack.split('\n')
@@ -22,5 +20,3 @@ class Caller {
     return params;
   }
 }
-
-module.exports = Caller;

@@ -1,10 +1,8 @@
-'use strict';
+import Prettifier from '@voiceflow/pino-pretty';
+import expressPino from 'express-pino-logger';
+import pino from 'pino';
 
-const pino = require('pino');
-const expressPino = require('express-pino-logger');
-
-const Prettifier = require('@voiceflow/pino-pretty');
-const { Caller } = require('../utils');
+import { Caller } from '../utils';
 
 const defaultConfigs = {
   level: 'info',
@@ -12,7 +10,7 @@ const defaultConfigs = {
   pretty: false,
 };
 
-class Logger {
+export default class Logger {
   constructor(config) {
     this.config = config != null ? config : defaultConfigs;
     this.baseLoggerConfig = {
@@ -34,32 +32,30 @@ class Logger {
     });
   }
 
-  trace(...params) {
+  trace(...params: any[]): void {
     this.baseLogger.trace(...params);
   }
 
-  debug(...params) {
+  debug(...params: any[]): void {
     this.baseLogger.debug(...params);
   }
 
-  info(...params) {
+  info(...params: any[]): void {
     this.baseLogger.info(...params);
   }
 
-  warn(...params) {
+  warn(...params: any[]): void {
     const logPayload = Caller.identify(params); // Full stack trace not needed for warnings
     this.baseLogger.warn(...logPayload);
   }
 
-  error(...params) {
+  error(...params: any[]): void {
     const logPayload = Caller.identify(params, this.config.stackTrace);
     this.baseLogger.error(...logPayload);
   }
 
-  fatal(...params) {
+  fatal(...params: any[]): void {
     const logPayload = Caller.identify(params, this.config.stackTrace);
     this.baseLogger.fatal(...logPayload);
   }
 }
-
-module.exports = Logger;

@@ -1,10 +1,6 @@
-'use strict';
+import { expect } from 'chai';
 
-const chai = require('chai');
-
-const Logger = require('../../..');
-
-const { expect } = chai;
+import { Logger } from '../../..';
 
 // Intercept stream and write it to a buffer instaed
 function captureStream(stream) {

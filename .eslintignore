@@ -1,2 +1,6 @@
-test.js
-coverage/
+coverage
+.idea
+.nyc_output
+nyc_coverage
+scratch.js
+/node_modules
