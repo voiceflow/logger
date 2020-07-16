@@ -39,7 +39,7 @@
   "compileOnSave": false,
   "include": [
     "**/*.ts",
-    "typings/**/*.d.ts"
+    "*.ts"
   ],
   "exclude": [
     "node_modules/**"
