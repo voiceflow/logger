@@ -73,4 +73,8 @@ export default class Logger {
     const logPayload = Caller.identify(params, this.config?.stackTrace);
     this.baseLogger.fatal(logPayload[0], logPayload[1]);
   }
+
+  logMiddlware(): expressPino.HttpLogger {
+    return this.middlewareLogger;
+  }
 }

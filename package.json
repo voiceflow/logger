@@ -70,7 +70,7 @@
       "git add"
     ]
   },
-  "main": "index.js",
+  "main": "build/index.js",
   "prettier": "@voiceflow/prettier-config",
   "repository": "git@github.com:voiceflow/logger.git",
   "scripts": {
