@@ -80,7 +80,7 @@
     "integration": "mocha --use_strict --exit \"tests/**/*.it.js\"",
     "lint": "eslint \"./**/*.{js,ts}\" --fix",
     "lint:quiet": "yarn lint -- --quiet",
-    "prepare": "fixpack",
+    "prepare": "yarn build",
     "send-coverage": "cat ./coverage/lcov.info | codacy-coverage",
     "test": "NODE_ENV=test nyc ts-mocha --paths --opts mocha.opts",
     "unit": "mocha --use_strict --exit \"tests/**/*.unit.js\""
