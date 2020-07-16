@@ -11,9 +11,9 @@ const defaultConfigs: vfLoggerConfig = {
 };
 
 export interface vfLoggerConfig {
-  level: Level;
-  stackTrace: boolean;
-  pretty: boolean;
+  level?: Level;
+  stackTrace?: boolean;
+  pretty?: boolean;
   redact?: string[] | redactOptions;
 }
 
