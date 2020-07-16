@@ -47,10 +47,6 @@
     "ttypescript": "^1.5.10",
     "typescript": "^3.9.6"
   },
-  "files": [
-    "lib/**/*",
-    "*.js"
-  ],
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
@@ -82,7 +78,7 @@
     "lint:quiet": "yarn lint -- --quiet",
     "prepare": "yarn build",
     "send-coverage": "cat ./coverage/lcov.info | codacy-coverage",
-    "test": "NODE_ENV=test nyc ts-mocha --paths --opts mocha.opts",
+    "test": "yarn clean && NODE_ENV=test nyc ts-mocha --paths --opts mocha.opts",
     "unit": "mocha --use_strict --exit \"tests/**/*.unit.js\""
   }
 }
