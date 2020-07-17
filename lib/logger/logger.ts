@@ -44,6 +44,24 @@ export default class Logger {
     this.baseLogger = pino(this.baseLoggerConfig);
     this.middlewareLogger = expressPino({
       logger: this.baseLogger, // Use the instantiated base logger
+      // Define a custom logger level
+      customLogLevel(res, err) {
+        if (res.statusCode >= 400 && res.statusCode < 500) {
+          return 'warn';
+        }
+        if (res.statusCode >= 500 || err) {
+          return 'error';
+        }
+        return 'info';
+      },
+
+      // Define a custom success message
+      customSuccessMessage(res) {
+        if (res.statusCode === 404) {
+          return 'resource not found';
+        }
+        return 'request completed';
+      },
     });
   }
 
