@@ -74,7 +74,7 @@ export default class Logger {
     this.baseLogger.fatal(logPayload[0], logPayload[1]);
   }
 
-  logMiddlware(): expressPino.HttpLogger {
+  logMiddleware(): expressPino.HttpLogger {
     return this.middlewareLogger;
   }
 }
