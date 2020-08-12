@@ -8,6 +8,7 @@ const defaultConfigs: vfLoggerConfig = {
   level: 'info',
   stackTrace: false,
   pretty: false,
+  middlewareVerbosity: 'short',
 };
 
 export interface vfLoggerConfig {
@@ -15,7 +16,39 @@ export interface vfLoggerConfig {
   stackTrace?: boolean;
   pretty?: boolean;
   redact?: string[] | redactOptions;
+  middlewareVerbosity?: string; // none, short, full
 }
+
+const noSerializer = {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  err: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  req: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  res: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  responseTime: () => {},
+};
+
+const shortSerializer = {
+  err: pino.stdSerializers.err,
+  req: (req) => {
+    return {
+      url: req.url,
+    };
+  },
+  res: (res) => {
+    return res.statusCode;
+  },
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  responseTime: () => {},
+};
+
+const fullSerializer = {
+  err: pino.stdSerializers.err,
+  req: pino.stdSerializers.req,
+  res: pino.stdSerializers.res,
+};
 
 export default class Logger {
   config: vfLoggerConfig;
@@ -25,6 +58,20 @@ export default class Logger {
   baseLogger: pino.Logger;
 
   middlewareLogger: expressPino.HttpLogger;
+
+  private static getSerializer(verbosity: string | undefined): any {
+    switch (verbosity) {
+      case 'none':
+        return noSerializer;
+      case 'short':
+        return shortSerializer;
+      case 'full':
+        return fullSerializer;
+
+      default:
+        return fullSerializer;
+    }
+  }
 
   constructor(config?: vfLoggerConfig) {
     this.config = config || defaultConfigs;
@@ -54,7 +101,7 @@ export default class Logger {
         }
         return 'info';
       },
-
+      serializers: Logger.getSerializer(this.config.middlewareVerbosity),
       // Define a custom success message
       customSuccessMessage(res) {
         if (res.statusCode === 404) {
