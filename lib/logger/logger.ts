@@ -129,17 +129,23 @@ export default class Logger {
 
   warn(...params: any[]): void {
     const logPayload = Caller.identify(params); // Full stack trace not needed for warnings
-    this.baseLogger.warn(logPayload[0], logPayload[1]);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    this.baseLogger.warn(...logPayload);
   }
 
   error(...params: any[]): void {
     const logPayload = Caller.identify(params, this.config?.stackTrace);
-    this.baseLogger.error(logPayload[0], logPayload[1]);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    this.baseLogger.error(...logPayload);
   }
 
   fatal(...params: any[]): void {
     const logPayload = Caller.identify(params, this.config?.stackTrace);
-    this.baseLogger.fatal(logPayload[0], logPayload[1]);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    this.baseLogger.fatal(...logPayload);
   }
 
   logMiddleware(): expressPino.HttpLogger {

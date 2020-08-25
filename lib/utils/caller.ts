@@ -1,8 +1,8 @@
-const STACKTRACE_OFFSET = 2;
+const STACKTRACE_OFFSET = 3;
 const LINE_OFFSET = 7;
 
 export default class Caller {
-  static identify(params: any[], stackTrace = false): string | string[] {
+  static identify(params: any[], stackTrace = false) {
     const callStack = Error()
       .stack?.split('\n')
       .slice(STACKTRACE_OFFSET);
@@ -12,7 +12,7 @@ export default class Caller {
     };
 
     if (typeof params[0] === 'object') {
-      params[0].stack = callerObj.stack;
+      params[1] = callerObj.stack;
     } else {
       params.unshift(callerObj);
     }
