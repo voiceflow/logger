@@ -1,7 +1,8 @@
-const STACKTRACE_OFFSET = 3;
+const STACKTRACE_OFFSET = 2;
 const LINE_OFFSET = 7;
 
 export default class Caller {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   static identify(params: any[], stackTrace = false) {
     const callStack = Error()
       .stack?.split('\n')
@@ -12,7 +13,7 @@ export default class Caller {
     };
 
     if (typeof params[0] === 'object') {
-      params[1] = callerObj.stack;
+      params[0].stack = callerObj.stack;
     } else {
       params.unshift(callerObj);
     }
