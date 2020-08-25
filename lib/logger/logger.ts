@@ -112,15 +112,18 @@ export default class Logger {
     });
   }
 
-  trace(msg: string, ...params: any[]): void {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  trace(msg: any, ...params: any[]): void {
     this.baseLogger.trace(msg, ...params);
   }
 
-  debug(msg: string, ...params: any[]): void {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  debug(msg: any, ...params: any[]): void {
     this.baseLogger.debug(msg, ...params);
   }
 
-  info(msg: string, ...params: any[]): void {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  info(msg: any, ...params: any[]): void {
     this.baseLogger.info(msg, ...params);
   }
 
