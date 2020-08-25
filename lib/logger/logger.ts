@@ -1,7 +1,8 @@
 import Prettifier from '@voiceflow/pino-pretty';
-import expressPino from 'express-pino-logger';
-import pino, { Level, LoggerOptions, redactOptions } from 'pino';
+import pino, { LoggerOptions, redactOptions } from 'pino';
+import expressPino from 'pino-http';
 
+import convertLevels from '@/lib/logger/levels';
 import Caller from '@/lib/utils';
 
 const defaultConfigs: vfLoggerConfig = {
@@ -12,11 +13,11 @@ const defaultConfigs: vfLoggerConfig = {
 };
 
 export interface vfLoggerConfig {
-  level?: Level;
+  level?: string | null;
   stackTrace?: boolean;
   pretty?: boolean;
   redact?: string[] | redactOptions;
-  middlewareVerbosity?: string; // none, short, full
+  middlewareVerbosity?: string | null; // none, short, full
 }
 
 const noSerializer = {
@@ -59,7 +60,7 @@ export default class Logger {
 
   middlewareLogger: expressPino.HttpLogger;
 
-  private static getSerializer(verbosity: string | undefined): any {
+  private static getSerializer(verbosity: string | null | undefined): any {
     switch (verbosity) {
       case 'none':
         return noSerializer;
@@ -76,7 +77,7 @@ export default class Logger {
   constructor(config?: vfLoggerConfig) {
     this.config = config || defaultConfigs;
     this.baseLoggerConfig = {
-      level: config?.level || defaultConfigs.level,
+      level: convertLevels(config?.level || defaultConfigs.level),
       base: null,
     };
 
@@ -104,10 +105,10 @@ export default class Logger {
       serializers: Logger.getSerializer(this.config.middlewareVerbosity),
       // Define a custom success message
       customSuccessMessage(res) {
-        if (res.statusCode === 404) {
-          return 'resource not found';
-        }
-        return 'request completed';
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        const reqPath = res.req.baseUrl + res.req.path;
+        return `${res.statusCode} | ${reqPath} `;
       },
     });
   }
