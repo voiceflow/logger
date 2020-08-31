@@ -51,6 +51,18 @@ const fullSerializer = {
   res: pino.stdSerializers.res,
 };
 
+const debugSerializer = {
+  err: pino.stdSerializers.err,
+  req(req) {
+    req.body = req.raw.body;
+    return req;
+  },
+  res(res) {
+    res.body = res.raw.body;
+    return res;
+  },
+};
+
 export default class Logger {
   config: vfLoggerConfig;
 
@@ -68,6 +80,8 @@ export default class Logger {
         return shortSerializer;
       case 'full':
         return fullSerializer;
+      case 'debug':
+        return debugSerializer;
 
       default:
         return fullSerializer;
