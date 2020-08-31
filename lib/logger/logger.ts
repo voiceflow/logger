@@ -55,6 +55,13 @@ const debugSerializer = {
   err: pino.stdSerializers.err,
   req(req) {
     req.body = req.raw.body;
+    // // Parse nested JSON strings
+    // if(req.body?.data) {
+    //   try{
+    //     const parsedData = JSON.parse(req.body.data);
+    //     req.body.parsedData = parsedData;
+    //   } catch(e){}
+    // }
     return req;
   },
   res(res) {
