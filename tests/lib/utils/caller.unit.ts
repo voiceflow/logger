@@ -51,8 +51,18 @@ describe('Caller identification', () => {
     xysbdwcc(); // Execute function under test
 
     expect(params[0]).to.have.property('stack');
-    expect(params[0].stack).to.be.an('array');
-    expect(params[0].stack[0].trim().split(' ')[1]).to.eql('innerWrapper'); // Ensure the top of stack is the innerWrapper
-    expect(params[0].stack[1].trim().split(' ')[1]).to.eql('xysbdwcc'); // Ensure the next level up is the random test function name
+    expect(params[0].stack).to.be.an('string');
+    expect(
+      params[0].stack
+        .split('\n')[0]
+        .trim()
+        .split(' ')[1]
+    ).to.eql('innerWrapper'); // Ensure the top of stack is the innerWrapper
+    expect(
+      params[0].stack
+        .split('\n')[1]
+        .trim()
+        .split(' ')[1]
+    ).to.eql('xysbdwcc'); // Ensure the next level up is the random test function name
   });
 });
