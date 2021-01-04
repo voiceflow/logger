@@ -2,7 +2,6 @@ import Prettifier from '@voiceflow/pino-pretty';
 import pino, { Logger as PinoLogger, LoggerOptions } from 'pino';
 import expressPino from 'pino-http';
 
-// import Caller from '@/lib/utils';
 import { defaultConfigs, Level, LoggerConfig, MiddlewareVerbosity } from './constants';
 import { debugSerializer, errorSerializer, fullSerializer, noSerializer, shortSerializer } from './utils';
 
