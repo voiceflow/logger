@@ -77,9 +77,9 @@
     "lint:fix": "yarn lint --fix",
     "lint:quiet": "yarn lint --quiet",
     "prepare": "yarn build",
-    "test": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts tests/**/*.{unit,it}.{ts,js}",
-    "test:integration": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts tests/**/*.it.{ts,js}",
-    "test:unit": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts tests/**/*.it.{ts,js}",
+    "test": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts 'tests/**/*.{unit,it}.{ts,js}'",
+    "test:integration": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts 'tests/**/*.it.{ts,js}'",
+    "test:unit": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts 'tests/**/*.it.{ts,js}'",
     "test:single": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts"
   }
 }
