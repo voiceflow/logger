@@ -3,4 +3,3 @@
 --use_strict
 --exit
 --recursive
-tests/**/*.{unit,it}.{js,ts}
