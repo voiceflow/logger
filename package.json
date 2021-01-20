@@ -73,12 +73,13 @@
     "build": "yarn clean && ttsc --project ./tsconfig.build.json",
     "clean": "rimraf build",
     "commit": "git-cz",
-    "integration": "mocha --use_strict --exit \"tests/**/*.it.js\"",
-    "lint": "eslint \"./**/*.{js,ts}\" --fix",
-    "lint:quiet": "yarn lint -- --quiet",
+    "lint": "eslint \"./**/*.{js,ts}\"",
+    "lint:fix": "yarn lint --fix",
+    "lint:quiet": "yarn lint --quiet",
     "prepare": "yarn build",
-    "send-coverage": "cat ./coverage/lcov.info | codacy-coverage",
-    "test": "yarn clean && NODE_ENV=test nyc ts-mocha --paths --opts mocha.opts",
-    "unit": "mocha --use_strict --exit \"tests/**/*.unit.js\""
+    "test": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts 'tests/**/*.{unit,it}.{ts,js}'",
+    "test:integration": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts 'tests/**/*.it.{ts,js}'",
+    "test:unit": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts 'tests/**/*.it.{ts,js}'",
+    "test:single": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts"
   }
 }
