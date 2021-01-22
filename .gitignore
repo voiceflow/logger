@@ -69,3 +69,6 @@ nyc_coverage/
 
 # TS Build
 build/
+
+#Sonar report
+sonar/
