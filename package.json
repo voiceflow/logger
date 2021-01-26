@@ -19,7 +19,7 @@
     "@typescript-eslint/eslint-plugin": "^3.6.1",
     "@typescript-eslint/parser": "^3.6.1",
     "@voiceflow/commitlint-config": "^1.0.1",
-    "@voiceflow/eslint-config": "^2.0.4",
+    "@voiceflow/eslint-config": "^2.0.5",
     "@voiceflow/git-branch-check": "^1.1.3",
     "@voiceflow/prettier-config": "^1.0.5",
     "chai": "^4.2.0",
@@ -80,7 +80,7 @@
     "prepare": "yarn build",
     "test": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts 'tests/**/*.{unit,it}.{ts,js}'",
     "test:integration": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts 'tests/**/*.it.{ts,js}'",
-    "test:unit": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts 'tests/**/*.it.{ts,js}'",
-    "test:single": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts"
+    "test:single": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts",
+    "test:unit": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts 'tests/**/*.it.{ts,js}'"
   }
 }
