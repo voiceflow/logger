@@ -1,18 +1,18 @@
+import pino, { Logger as PinoLogger, LoggerOptions } from '@voiceflow/pino';
 import Prettifier from '@voiceflow/pino-pretty';
-import pino, { Logger as PinoLogger, LoggerOptions } from 'pino';
 import expressPino from 'pino-http';
 
 import { defaultConfigs, Level, LoggerConfig, MiddlewareVerbosity } from './constants';
 import { debugSerializer, errorSerializer, fullSerializer, noSerializer, shortSerializer } from './utils';
 
 class Logger {
-  config: LoggerConfig;
+  private config: LoggerConfig;
 
-  baseLogger: PinoLogger;
+  private baseLogger: PinoLogger;
 
-  baseLoggerConfig: LoggerOptions;
+  private baseLoggerConfig: LoggerOptions;
 
-  middlewareLogger: expressPino.HttpLogger;
+  private middlewareLogger: expressPino.HttpLogger;
 
   private static getSerializer(verbosity?: null | MiddlewareVerbosity) {
     switch (verbosity) {

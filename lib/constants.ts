@@ -1,4 +1,4 @@
-import { redactOptions } from 'pino';
+import { redactOptions } from '@voiceflow/pino';
 
 export enum Level {
   INFO = 'info',
@@ -19,13 +19,11 @@ export interface LoggerConfig {
   level?: Level | null;
   pretty?: boolean;
   redact?: string[] | redactOptions;
-  stackTrace?: boolean;
   middlewareVerbosity?: MiddlewareVerbosity | null;
 }
 
 export const defaultConfigs: LoggerConfig = {
   level: Level.INFO,
   pretty: false,
-  stackTrace: false,
   middlewareVerbosity: MiddlewareVerbosity.SHORT,
 };

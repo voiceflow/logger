@@ -26,7 +26,6 @@ describe('Logger integration tests', () => {
     beforeEach(() => {
       stdoutInspector = captureStream(process.stdout); // Hook needs to be registered before the logger is instantiated
       loggerInstance = new Logger({
-        stackTrace: false,
         level: Level.TRACE,
         pretty: false,
       });
