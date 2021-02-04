@@ -40,7 +40,7 @@ const createTraced = ({
   });
 
   const middleware = createMiddleware({
-    logger: options.prettifier ? logger : proxifiedLogger,
+    logger: proxifiedLogger,
     verbosity,
     genReqId: () => getTracedData()?.traceID ?? nanoid(traceIDLength),
   });
@@ -50,7 +50,7 @@ const createTraced = ({
     namespace.bindEmitter(res);
 
     const traceID = nanoid(traceIDLength);
-    const tracedLogger = options.prettifier ? logger : logger.child({ traceID });
+    const tracedLogger = logger.child({ traceID });
 
     namespace.run(() => {
       setTracedData({ traceID, logger: tracedLogger });
