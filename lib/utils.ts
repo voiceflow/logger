@@ -11,7 +11,7 @@ export const errorSerializer = (err: any): SerializedError => {
     return stdSerializers.err(err.toJSON?.() ?? err);
   }
 
-  return stdSerializers.err(err?.isAxiosError);
+  return stdSerializers.err(err);
 };
 
 export const noSerializer = {

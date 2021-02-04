@@ -13,25 +13,27 @@ class Logger {
   private middleware: HttpLogger;
 
   constructor(config: LoggerConfig = defaultConfigs) {
+    const cfg = Object.assign(defaultConfigs, config);
+
     const options: LoggerOptions = {
       base: null,
-      level: config?.level || defaultConfigs.level!,
+      level: cfg.level!,
       serializers: { err: errorSerializer },
     };
 
-    if (config?.pretty) {
+    if (cfg?.pretty) {
       options.prettifier = prettifier;
       options.prettyPrint = { levelFirst: true, translateTime: true };
     }
 
-    if (config.withTraceID) {
-      const traced = createTraced({ options, verbosity: config.middlewareVerbosity });
+    if (cfg.withTraceID) {
+      const traced = createTraced({ options, verbosity: cfg.middlewareVerbosity });
 
       this.logger = traced.logger;
       this.middleware = traced.middleware;
     } else {
       this.logger = pino(options);
-      this.middleware = createMiddleware({ logger: this.logger, verbosity: config.middlewareVerbosity });
+      this.middleware = createMiddleware({ logger: this.logger, verbosity: cfg.middlewareVerbosity });
     }
   }
 
