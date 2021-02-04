@@ -18,6 +18,7 @@ export const noSerializer = {
   err: (): void => {},
   req: (): void => {},
   res: (): void => {},
+  traceID: (): void => {},
   responseTime: (): void => {},
 };
 

@@ -1,100 +1,66 @@
 import pino, { Logger as PinoLogger, LoggerOptions } from '@voiceflow/pino';
-import Prettifier from '@voiceflow/pino-pretty';
-import expressPino from 'pino-http';
+import prettifier from '@voiceflow/pino-pretty';
+import { HttpLogger } from 'pino-http';
 
-import { defaultConfigs, Level, LoggerConfig, MiddlewareVerbosity } from './constants';
-import { debugSerializer, errorSerializer, fullSerializer, noSerializer, shortSerializer } from './utils';
+import { defaultConfigs, LoggerConfig } from './constants';
+import createMiddleware from './createMiddleware';
+import createTraced from './createTraced';
+import { errorSerializer } from './utils';
 
 class Logger {
-  private config: LoggerConfig;
+  private logger: PinoLogger;
 
-  private baseLogger: PinoLogger;
-
-  private baseLoggerConfig: LoggerOptions;
-
-  private middlewareLogger: expressPino.HttpLogger;
-
-  private static getSerializer(verbosity?: null | MiddlewareVerbosity) {
-    switch (verbosity) {
-      case MiddlewareVerbosity.NONE:
-        return noSerializer;
-      case MiddlewareVerbosity.SHORT:
-        return shortSerializer;
-      case MiddlewareVerbosity.FULL:
-        return fullSerializer;
-      case MiddlewareVerbosity.DEBUG:
-        return debugSerializer;
-      default:
-        return fullSerializer;
-    }
-  }
+  private middleware: HttpLogger;
 
   constructor(config: LoggerConfig = defaultConfigs) {
-    this.config = config;
-
-    this.baseLoggerConfig = {
+    const options: LoggerOptions = {
       base: null,
       level: config?.level || defaultConfigs.level!,
       serializers: { err: errorSerializer },
     };
 
-    if (this.config?.pretty) {
-      this.baseLoggerConfig.prettifier = Prettifier;
-      this.baseLoggerConfig.prettyPrint = { levelFirst: true, translateTime: true };
+    if (config?.pretty) {
+      options.prettifier = prettifier;
+      options.prettyPrint = { levelFirst: true, translateTime: true };
     }
 
-    this.baseLogger = pino(this.baseLoggerConfig);
+    if (config.withTraceID) {
+      const traced = createTraced({ options, verbosity: config.middlewareVerbosity });
 
-    this.middlewareLogger = expressPino({
-      logger: this.baseLogger,
-      serializers: Logger.getSerializer(this.config.middlewareVerbosity),
-      customLogLevel(res, err) {
-        if (res.statusCode >= 400 && res.statusCode < 500) {
-          return Level.WARN;
-        }
-
-        if (res.statusCode >= 500 || err) {
-          return Level.ERROR;
-        }
-
-        return Level.INFO;
-      },
-      customSuccessMessage(res) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        const reqPath = res.req.baseUrl + res.req.path;
-
-        return `${res.statusCode} | ${reqPath} `;
-      },
-    });
+      this.logger = traced.logger;
+      this.middleware = traced.middleware;
+    } else {
+      this.logger = pino(options);
+      this.middleware = createMiddleware({ logger: this.logger, verbosity: config.middlewareVerbosity });
+    }
   }
 
   trace(...params: [any, ...any[]]): void {
-    this.baseLogger.trace(...params);
+    this.logger.trace(...params);
   }
 
   debug(...params: [any, ...any[]]): void {
-    this.baseLogger.debug(...params);
+    this.logger.debug(...params);
   }
 
   info(...params: [any, ...any[]]): void {
-    this.baseLogger.info(...params);
+    this.logger.info(...params);
   }
 
   warn(...params: [any, ...any[]]): void {
-    this.baseLogger.warn(...params);
+    this.logger.warn(...params);
   }
 
   error(...params: [any, ...any[]]): void {
-    this.baseLogger.error(...params);
+    this.logger.error(...params);
   }
 
   fatal(...params: [any, ...any[]]): void {
-    this.baseLogger.fatal(...params);
+    this.logger.fatal(...params);
   }
 
-  logMiddleware(): expressPino.HttpLogger {
-    return this.middlewareLogger;
+  logMiddleware(): HttpLogger {
+    return this.middleware;
   }
 }
 
