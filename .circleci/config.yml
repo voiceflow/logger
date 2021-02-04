@@ -12,6 +12,8 @@ jobs:
       - checkout
       - vfcommon/install_node_modules
       - vfcommon/lint_source
+      - vfcommon/dependency_tests:
+          step_name: Dependency Tests
       - vfcommon/build
       - vfcommon/integration_tests
       - codecov/upload:
