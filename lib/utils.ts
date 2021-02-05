@@ -1,11 +1,15 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 
-import { SerializedError, SerializedRequest, SerializedResponse, stdSerializers } from 'pino';
+import { SerializedError, SerializedRequest, SerializedResponse, stdSerializers } from '@voiceflow/pino';
 
-export const errorSerializer = (err: Error): SerializedError => {
+export const errorSerializer = (err: any): SerializedError => {
   const lines = err.stack?.split('\n').filter((str) => !str.match(/node_modules\/|\\|\\\\(pino|@voiceflow\/|\\|\\\\logger)/));
 
   err.stack = lines?.join('');
+
+  if (err.isAxiosError) {
+    return stdSerializers.err(err.toJSON?.() ?? err);
+  }
 
   return stdSerializers.err(err);
 };
@@ -14,6 +18,7 @@ export const noSerializer = {
   err: (): void => {},
   req: (): void => {},
   res: (): void => {},
+  traceID: (): void => {},
   responseTime: (): void => {},
 };
 
