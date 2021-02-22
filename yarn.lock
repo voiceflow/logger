@@ -479,10 +479,10 @@
     "@types/pino-std-serializers" "*"
     "@types/sonic-boom" "*"
 
-"@types/pino@6.3.4":
-  version "6.3.4"
-  resolved "https://registry.yarnpkg.com/@types/pino/-/pino-6.3.4.tgz#f22524c33a7e21f45f5cc7fc2c570ccae0be98fa"
-  integrity sha512-03MpZ/HP6GlG0oo5dcb8NBpI21zNESswTbaA0VB4uuigXfVy+XLmzh39CY6VCAahPMxCPtuqSEdhwGeA3AOYXg==
+"@types/pino@^6.3.6":
+  version "6.3.6"
+  resolved "https://registry.yarnpkg.com/@types/pino/-/pino-6.3.6.tgz#3aa928bcbd30dc0c6a0ec2e9302cabd5dee6e832"
+  integrity sha512-yVgSyMGzNDYe/XNMJyuIkklDeZbFdGAxRztYLoN1QQrrgiLJ1oJPmnS8Ge5xpzI9ODKEddKH97VFQ7cWO6Pumw==
   dependencies:
     "@types/node" "*"
     "@types/pino-std-serializers" "*"
@@ -682,11 +682,12 @@
     split2 "^3.1.1"
     strip-json-comments "^3.1.1"
 
-"@voiceflow/pino@6.11.0":
-  version "6.11.0"
-  resolved "https://registry.yarnpkg.com/@voiceflow/pino/-/pino-6.11.0.tgz#f4479cb074e54e725459909b81aa7e200a9ce86a"
-  integrity sha512-E7d267mhcTWr0tbae1arMixZVYsyOLBSZu1DKmaRYh9Hu7pvHS6cBIpjiP2tRWCApjE0vJrV56hlxPYoa16CZQ==
+"@voiceflow/pino@6.11.1":
+  version "6.11.1"
+  resolved "https://registry.yarnpkg.com/@voiceflow/pino/-/pino-6.11.1.tgz#416a95e40989f625fb973d9eaa6ef550e33f0bde"
+  integrity sha512-rAYwY8BR9/V2kz+il2MQ83bK/53L7WEajC0J07ojdTlq55PS9Me0PBRFdqjzzLAMAiZDIv/jfuc+M3pz7szt/A==
   dependencies:
+    "@types/pino" "^6.3.6"
     fast-redact "^3.0.0"
     fast-safe-stringify "^2.0.7"
     flatstr "^1.0.12"
