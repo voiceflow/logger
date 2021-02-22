@@ -14,7 +14,7 @@
   "dependencies": {
     "@types/cls-hooked": "^4.3.1",
     "@types/express-pino-logger": "^4.0.2",
-    "@voiceflow/pino": "6.11.1",
+    "@voiceflow/pino": "6.11.2",
     "@voiceflow/pino-pretty": "4.4.0",
     "@zerollup/ts-transform-paths": "^1.7.18",
     "cls-hooked": "^4.2.2",
