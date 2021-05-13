@@ -1,3 +1,6 @@
+[![circle ci](https://circleci.com/gh/voiceflow/logger.svg?style=shield&circle-token=8c4e4ce8d04d87f16e903bd7e1ccab194a118262)](https://circleci.com/gh/voiceflow/logger)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=voiceflow_logger&metric=coverage)](https://sonarcloud.io/dashboard?id=voiceflow_logger)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=voiceflow_logger&metric=alert_status)](https://sonarcloud.io/dashboard?id=voiceflow_logger)
 # logger
 
 Author: Frank Gu <<frank@voicelfow.com>>
