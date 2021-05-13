@@ -71,8 +71,8 @@
     "test": "yarn test:run",
     "test:run": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts 'tests/**/*.{unit,it}.{ts,js}'",
     "test:dependencies": "depcheck",
-    "test:integration": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts 'tests/**/*.it.{ts,js}'",
+    "test:integration": "NODE_ENV=test nyc --report-dir nyc_coverage_integration ts-mocha --paths --opts ./config/tests/mocha.opts 'tests/**/*.it.{ts,js}'",
     "test:single": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts",
-    "test:unit": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts 'tests/**/*.it.{ts,js}'"
+    "test:unit": "NODE_ENV=test nyc --report-dir=nyc_coverage_unit ts-mocha --paths --opts ./config/tests/mocha.opts 'tests/**/*.unit.{ts,js}'"
   }
 }
