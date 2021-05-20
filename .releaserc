@@ -1,5 +1,5 @@
 {
-  "release": {
-    "branch": "master"
-  }
+  branches: [
+      master
+    ]
 }
