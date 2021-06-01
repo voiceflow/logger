@@ -38,28 +38,28 @@ class Logger {
     }
   }
 
-  trace(...params: [any, ...any[]]): void {
-    this.logger.trace(...params);
+  trace(message: any): void {
+    this.logger.trace(message);
   }
 
-  debug(...params: [any, ...any[]]): void {
-    this.logger.debug(...params);
+  debug(message: any): void {
+    this.logger.debug(message);
   }
 
-  info(...params: [any, ...any[]]): void {
-    this.logger.info(...params);
+  info(message: any): void {
+    this.logger.info(message);
   }
 
-  warn(...params: [any, ...any[]]): void {
-    this.logger.warn(...params);
+  warn(message: any): void {
+    this.logger.warn(message);
   }
 
-  error(...params: [any, ...any[]]): void {
-    this.logger.error(...params);
+  error(message: any): void {
+    this.logger.error(message);
   }
 
-  fatal(...params: [any, ...any[]]): void {
-    this.logger.fatal(...params);
+  fatal(message: any): void {
+    this.logger.fatal(message);
   }
 
   logMiddleware(): HttpLogger {
