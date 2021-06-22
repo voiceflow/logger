@@ -51,6 +51,9 @@
     "ttypescript": "^1.5.10",
     "typescript": "^3.9.6"
   },
+  "files": [
+    "build/"
+  ],
   "homepage": "https://github.com/voiceflow/logger#readme",
   "keywords": [
     "voiceflow"
@@ -69,9 +72,9 @@
     "lint:report": "yarn lint --format json -o sonar/report.json",
     "prepare": "yarn build",
     "test": "yarn test:run",
-    "test:run": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts 'tests/**/*.{unit,it}.{ts,js}'",
     "test:dependencies": "depcheck",
     "test:integration": "NODE_ENV=test nyc --report-dir nyc_coverage_integration ts-mocha --paths --opts ./config/tests/mocha.opts 'tests/**/*.it.{ts,js}'",
+    "test:run": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts 'tests/**/*.{unit,it}.{ts,js}'",
     "test:single": "NODE_ENV=test nyc ts-mocha --paths --opts ./config/tests/mocha.opts",
     "test:unit": "NODE_ENV=test nyc --report-dir=nyc_coverage_unit ts-mocha --paths --opts ./config/tests/mocha.opts 'tests/**/*.unit.{ts,js}'"
   }
