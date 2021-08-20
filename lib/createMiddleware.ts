@@ -48,7 +48,12 @@ const createMiddleware = ({
       // @ts-ignore
       const { baseUrl, path } = res.req;
 
-      return `${res.statusCode} | ${baseUrl + path} `;
+      if (baseUrl || path) {
+        return `${res.statusCode} | ${baseUrl ?? ''}${path ?? ''} `;
+      }
+
+      // This should never happen
+      return `${res.statusCode} | (unknown path)`;
     },
   });
 
