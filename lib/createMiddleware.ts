@@ -33,12 +33,12 @@ const createMiddleware = ({
     genReqId,
     serializers: getSerializer(verbosity),
     customLogLevel(res, err) {
-      if (res.statusCode >= 400 && res.statusCode < 500) {
-        return Level.WARN;
-      }
-
       if (res.statusCode >= 500 || err) {
         return Level.ERROR;
+      }
+
+      if (res.statusCode >= 400) {
+        return Level.WARN;
       }
 
       return Level.INFO;
