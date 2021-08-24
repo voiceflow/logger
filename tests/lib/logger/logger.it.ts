@@ -90,7 +90,7 @@ describe('Logger integration tests', () => {
     });
 
     it('Formats variables', () => {
-      expect(loggerInstance.vars({ a: 1, b: 2, c: 3 })).to.eql('a=1 b=2 c=3');
+      expect(loggerInstance.vars({ a: 1, b: 2, c: 3 }, 'pfx ')).to.eql('pfx a=1, b=2, c=3');
     });
   });
 
