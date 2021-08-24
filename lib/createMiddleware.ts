@@ -33,12 +33,16 @@ const createMiddleware = ({
     genReqId,
     serializers: getSerializer(verbosity),
     customLogLevel(res, err) {
-      if (res.statusCode >= 400 && res.statusCode < 500) {
-        return Level.WARN;
-      }
-
       if (res.statusCode >= 500 || err) {
         return Level.ERROR;
+      }
+
+      if (res.statusCode >= 400) {
+        if (res.statusCode === 404) {
+          return Level.TRACE;
+        }
+
+        return Level.WARN;
       }
 
       return Level.INFO;
@@ -48,7 +52,12 @@ const createMiddleware = ({
       // @ts-ignore
       const { baseUrl, path } = res.req;
 
-      return `${res.statusCode} | ${baseUrl + path} `;
+      if (baseUrl || path) {
+        return `${res.statusCode} | ${baseUrl ?? ''}${path ?? ''} `;
+      }
+
+      // This should never happen
+      return `${res.statusCode} | (unknown path)`;
     },
   });
 

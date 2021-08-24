@@ -1,6 +1,7 @@
 import pino, { Logger as PinoLogger, LoggerOptions } from '@voiceflow/pino';
 import prettifier from '@voiceflow/pino-pretty';
 import { HttpLogger } from 'pino-http';
+import util from 'util';
 
 import { LogLevel } from '..';
 import { defaultConfigs, LoggerConfig } from './constants';
@@ -64,6 +65,27 @@ class Logger {
 
   logMiddleware(): HttpLogger {
     return this.middleware;
+  }
+
+  /**
+   * Format an object of variables into a string.
+   *
+   * @example
+   * ```js
+   * logger.vars({ a: 1, b: 2, c: 3 }); // '| a=1 b=2 c=3'
+   * ```
+   */
+  vars(variables: Record<string, unknown>, prefix = '| '): string {
+    return (
+      prefix +
+      Object.entries(variables)
+        .map(([key, value]) => {
+          const serializedValue = value !== null && typeof value === 'object' ? util.inspect(value) : value;
+
+          return `${key}=${serializedValue}`;
+        })
+        .join(', ')
+    );
   }
 }
 
