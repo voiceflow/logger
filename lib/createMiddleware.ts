@@ -38,6 +38,10 @@ const createMiddleware = ({
       }
 
       if (res.statusCode >= 400) {
+        if (res.statusCode === 404) {
+          return Level.TRACE;
+        }
+
         return Level.WARN;
       }
 

@@ -88,6 +88,10 @@ describe('Logger integration tests', () => {
       expect(parsedLogObj).to.have.property('stack');
       expect(parsedLogObj.stack).to.be.an('string');
     });
+
+    it('Formats variables', () => {
+      expect(loggerInstance.vars({ a: 1, b: 2, c: 3 })).to.eql('a=1 b=2 c=3');
+    });
   });
 
   describe('Logger config', () => {
