@@ -625,12 +625,12 @@
   dependencies:
     eslint-visitor-keys "^1.1.0"
 
-"@voiceflow/commitlint-config@^1.0.1":
+"@voiceflow/commitlint-config@1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@voiceflow/commitlint-config/-/commitlint-config-1.0.1.tgz#e9513aa348d5e88ff064022e2dae8d0d7e227f6a"
   integrity sha512-7amH9jUarcsB5CXmYNOeejQXtCs7kdyETjPp6q2x0y1mNGWfhqzWZ/FySP+wkvFytXyu46PADH29rBw3p2zGdw==
 
-"@voiceflow/eslint-config@^2.0.5":
+"@voiceflow/eslint-config@2.0.6":
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/@voiceflow/eslint-config/-/eslint-config-2.0.6.tgz#cf5f3e5be2cde289f2bc55f411558bd2b1e5e29f"
   integrity sha512-nDW2WZkzJHnw2hbgmENvommd2u4PQF3/5fFdUJTudzncR6oXRpBfHkKV5SLa03zolI4cEIWukYPduPDJ4Gzh+g==
@@ -658,7 +658,7 @@
     eslint-plugin-xss "^0.1.9"
     typescript "^3.9.7"
 
-"@voiceflow/git-branch-check@^1.1.3":
+"@voiceflow/git-branch-check@1.1.3":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@voiceflow/git-branch-check/-/git-branch-check-1.1.3.tgz#13bb13b7f8ee3b77cec3a0f2e9303f9d615bc253"
   integrity sha512-+u6hecCseDXGePpU7H2KgUwZ/dHWGUNjNCAe6rOCUcMXu7sYIn2ioo++/QgnVaXsvanf3GDIdXBZimYgOSW7jQ==
@@ -695,7 +695,7 @@
     quick-format-unescaped "^4.0.1"
     sonic-boom "^1.0.2"
 
-"@voiceflow/prettier-config@^1.0.5":
+"@voiceflow/prettier-config@1.0.5":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@voiceflow/prettier-config/-/prettier-config-1.0.5.tgz#307caf65040ae0c0539ecb8531b9e403381f11ab"
   integrity sha512-yM35E7UI0fD8yMgL7JImljvMLZVU+jCz/latc2s2e7Nlbr9kiMpO0FArjkaXVIghhcUeQ0y04lsFUHRu3kMzmA==
