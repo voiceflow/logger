@@ -18,7 +18,6 @@ jobs:
     steps:
       - checkout
       - vfcommon/install_node_modules
-      - vfcommon/lint_source
       - vfcommon/lint_report
       - vfcommon/dependency_tests:
           step_name: Dependency Tests
@@ -34,7 +33,7 @@ workflows:
           context: dev-test
           filters:
             <<: *autorebase_filters
-            
+
       - vfcommon/release:
           context: dev-test
           requires:
