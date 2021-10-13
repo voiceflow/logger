@@ -6,6 +6,10 @@ module.exports = {
     {
       files: ['*.ts'],
       extends: ['@voiceflow/eslint-config/typescript'],
+      rules: {
+        'class-methods-use-this': 'off',
+        'no-param-reassign': 'off',
+      },
     },
   ],
 };
