@@ -9,6 +9,7 @@ module.exports = {
       rules: {
         'class-methods-use-this': 'off',
         'no-param-reassign': 'off',
+        'import/no-cycle': 'off',
       },
     },
   ],
