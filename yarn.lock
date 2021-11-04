@@ -927,10 +927,10 @@
   dependencies:
     "@commitlint/config-conventional" "^12.1.4"
 
-"@voiceflow/eslint-config@4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@voiceflow/eslint-config/-/eslint-config-4.0.0.tgz#46b96ec52d1255ae82a3ac8fdfa722ca233e0e1e"
-  integrity sha512-05eKn2trZdJtiiv8oyx+G8S2BhBmystWZU3EkHu7GxfLQxb0FDFBe3PsOhFB+eA+AWPPHLqN2IDaXX/l5t/w0w==
+"@voiceflow/eslint-config@5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@voiceflow/eslint-config/-/eslint-config-5.0.0.tgz#f44d6f29c6ef3d785dd69c3a48cf04339f65594c"
+  integrity sha512-NFHK7SIGt4H1ELoVOhiAGhOTAIgrzbVaKqf2X4Tx6L5NRXb+5qEhoTnPptvjcFlmX6TEs4cMUvanwTPDLcdP3g==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^4.31.0"
     "@typescript-eslint/parser" "^4.31.0"

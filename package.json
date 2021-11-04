@@ -30,7 +30,7 @@
     "@typescript-eslint/eslint-plugin": "^3.6.1",
     "@typescript-eslint/parser": "^3.6.1",
     "@voiceflow/commitlint-config": "1.1.0",
-    "@voiceflow/eslint-config": "4.0.0",
+    "@voiceflow/eslint-config": "5.0.0",
     "@voiceflow/git-branch-check": "1.2.0",
     "@voiceflow/prettier-config": "1.0.5",
     "chai": "^4.2.0",
