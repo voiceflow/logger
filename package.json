@@ -73,7 +73,6 @@
     "lint:output": "yarn run eslint-output --quiet \"**/*.{js,ts}\"",
     "lint:quiet": "yarn lint --quiet",
     "lint:report": "yarn lint:output",
-    "prepare": "yarn build",
     "test": "yarn test:run",
     "test:dependencies": "depcheck",
     "test:integration": "NODE_ENV=test nyc --report-dir nyc_coverage_integration ts-mocha --paths --opts ./config/tests/mocha.opts 'tests/**/*.it.{ts,js}'",

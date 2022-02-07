@@ -1,33 +1,41 @@
 version: 2.1
 
 orbs:
-  vfcommon: voiceflow/common@0.0.246
+  vfcommon: voiceflow/common@dev:58420e3
   sonarcloud: sonarsource/sonarcloud@1.0.2
 
 jobs:
-  build-and-test:
+  test:
     executor: vfcommon/default-executor
     steps:
       - checkout
       - vfcommon/install_node_modules
-      - vfcommon/lint_report
+      - attach_workspace:
+          at: ~/voiceflow
+      - vfcommon/lint_report:
+          run_in_background: true
       - vfcommon/dependency_tests:
-          step_name: Dependency Tests
-      - vfcommon/build
-      - vfcommon/integration_tests
+          run_in_background: true
+      - vfcommon/integration_tests:
+          wait: true
       - sonarcloud/scan
 
 workflows:
-
   test-and-release:
     jobs:
-      - build-and-test:
+      - vfcommon/install_and_build:
           context: dev-test
+
+      - test:
+          context: dev-test
+          requires:
+            - vfcommon/install_and_build
 
       - vfcommon/release:
           context: dev-test
           requires:
-            - build-and-test
+            - test
+            - vfcommon/install_and_build
           filters:
             branches:
               only: master
