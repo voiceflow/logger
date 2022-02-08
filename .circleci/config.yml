@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  vfcommon: voiceflow/common@dev:58420e3
+  vfcommon: voiceflow/common@0.0.277
   sonarcloud: sonarsource/sonarcloud@1.0.2
 
 jobs:
