@@ -54,7 +54,7 @@
     "voiceflow"
   ],
   "license": "ISC",
-  "main": "build/index.js",
+  "main": "build/main.js",
   "prettier": "@voiceflow/prettier-config",
   "repository": "git@github.com:voiceflow/logger.git",
   "scripts": {
@@ -72,5 +72,6 @@
     "test:run": "NODE_ENV=test nyc ts-mocha --paths --config ./config/test/.mocharc.yml 'test/**/*.{unit,it}.ts'",
     "test:single": "NODE_ENV=test ts-mocha --paths --config ./config/test/.mocharc.yml",
     "test:unit": "NODE_ENV=test nyc --report-dir=nyc_coverage_unit ts-mocha --paths --config ./config/test/.mocharc.yml 'test/**/*.unit.ts'"
-  }
+  },
+  "types": "build/main.d.ts"
 }

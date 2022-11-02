@@ -126,10 +126,10 @@ describe('Logger integration tests', () => {
       const message = 'test message';
       const loggerInstance = createLogger();
 
-      loggerInstance.warn(message);
+      loggerInstance.info(message);
 
       const parsedLogObj = JSON.parse(stdoutInspector.captured());
-      expect(parsedLogObj.level).to.eq(40);
+      expect(parsedLogObj.level).to.eq(30);
       expect(parsedLogObj.msg).to.eq(message);
     });
   });

@@ -7,7 +7,7 @@ import { LoggerOptions } from './logger-options.interface';
 
 export const DEFAULT_OPTIONS: LoggerOptions = {
   format: LogFormat.JSON,
-  level: LogLevel.WARN,
+  level: LogLevel.INFO,
 };
 
 export const createLogger = (options: Partial<LoggerOptions> = {}) => {
