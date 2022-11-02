@@ -1,7 +1,4 @@
 coverage
-.idea
 .nyc_output
-scratch.js
-/node_modules
 /build
-nyc_coverage*
+/node_modules
