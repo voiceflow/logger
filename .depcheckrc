@@ -19,6 +19,7 @@
     "fixpack",
     "husky",
     "istanbul",
-    "lint-staged"
+    "lint-staged",
+    "pino-pretty"
   ]
 }
