@@ -1,3 +1,5 @@
+import _merge from 'lodash.merge';
+
 import { createDetailedLogger } from './detailed.logger';
 import { createInlineLogger } from './inline.logger';
 import { createJSONLogger } from './json.logger';
@@ -11,7 +13,7 @@ export const DEFAULT_OPTIONS: LoggerOptions = {
 };
 
 export const createLogger = (options: Partial<LoggerOptions> = {}) => {
-  const { format, level } = { ...DEFAULT_OPTIONS, ...options };
+  const { format, level } = _merge({}, DEFAULT_OPTIONS, options);
 
   switch (format) {
     case LogFormat.DETAILED:

@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "colorette": "2.0.19",
+    "lodash.merge": "4.6.2",
     "pino": "8.7.0",
     "pino-http": "8.2.1",
     "pino-pretty": "9.1.1",
@@ -22,6 +23,7 @@
     "@commitlint/cli": "17.1.2",
     "@istanbuljs/nyc-config-typescript": "1.0.2",
     "@types/chai": "4.3.3",
+    "@types/lodash.merge": "^4.6.7",
     "@types/mocha": "9.1.1",
     "@voiceflow/commitlint-config": "2.0.0",
     "@voiceflow/eslint-config": "7.0.0",

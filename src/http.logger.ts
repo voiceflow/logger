@@ -9,12 +9,12 @@ import { createJSONConfig } from './json.logger';
 import { LogFormat } from './log-format.enum';
 import { LogLevel } from './log-level.enum';
 import { LoggerOptions } from './logger-options.interface';
-import { getColorizer, isErrorStatus, isWarnStatus } from './utils';
+import { getColorizer, isErrorResponse, isWarnResponse } from './utils';
 
 export const createHTTPConfig = ({ format, level }: LoggerOptions): Options => ({
   customLogLevel: (_req, res) => {
-    if (isWarnStatus(res)) return LogLevel.WARN;
-    if (res.err || isErrorStatus(res)) return LogLevel.ERROR;
+    if (isWarnResponse(res)) return LogLevel.WARN;
+    if (isErrorResponse(res)) return LogLevel.ERROR;
     return LogLevel.INFO;
   },
 
