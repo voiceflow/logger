@@ -1,47 +1,16 @@
 {
+  "extends": "@voiceflow/tsconfig",
   "compilerOptions": {
-    "target": "es2017",
-    "moduleResolution": "node",
-    "module": "commonjs",
-    "declaration": true,
-    "sourceMap": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "experimentalDecorators": true,
-    /* Strictness Checks */
-    "alwaysStrict": true,
-    "noImplicitAny": false,
-    "noUnusedLocals": true,
-    "noImplicitThis": true,
-    "strictNullChecks": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "strictFunctionTypes": true,
-    "strictBindCallApply": true,
-    "noFallthroughCasesInSwitch": true,
-    "strictPropertyInitialization": true,
-    /* Debugging Options */
-    "traceResolution": false,
-    "listEmittedFiles": false,
-    "listFiles": false,
-    "pretty": true,
-    "lib": [
-      "es2017"
-    ],
-    "outDir": "./build",
     "baseUrl": ".",
+    "outDir": "build",
     "paths": {
       "@/*": [
-        "./*"
+        "./src/*"
       ]
     }
   },
-  "compileOnSave": false,
-  "include": [
-    "**/*.ts",
-    "*.ts"
-  ],
   "exclude": [
-    "node_modules/**"
+    "node_modules",
+    "build"
   ]
 }

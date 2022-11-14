@@ -1,13 +1,25 @@
 {
-  "specials": ["bin", "eslint", "lint-staged", "istanbul", "commitizen", "husky", "prettier", "ttypescript"],
+  "specials": [
+    "bin",
+    "eslint",
+    "lint-staged",
+    "istanbul",
+    "commitizen",
+    "husky",
+    "prettier"
+  ],
   "ignores": [
     "@commitlint/*",
     "@types/*",
-    "@voiceflow/commitlint-config",
+    "@voiceflow/tsconfig",
     "@voiceflow/git-branch-check",
-    "prettier-eslint-cli",
+    "@voiceflow/commitlint-config",
+    "@voiceflow/semantic-release-config",
+    "eslint-import-resolver-typescript",
     "fixpack",
     "husky",
-    "lint-staged"
+    "istanbul",
+    "lint-staged",
+    "pino-pretty"
   ]
 }
