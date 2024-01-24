@@ -1,5 +1,5 @@
 /* eslint-disable sonarjs/no-nested-template-literals */
-import { white } from 'colorette';
+import { gray, white } from 'colorette';
 import pinoHttp, { Options } from 'pino-http';
 import { match } from 'ts-pattern';
 
@@ -20,8 +20,14 @@ export const createHTTPConfig = ({ format, level }: LoggerOptions): Options => (
 
   ...match<LogFormat, Options>(format)
     .with(LogFormat.INLINE, () => ({
-      customSuccessMessage: (req, res) => `${getColorizer(res)(`(${res.statusCode})`)} ${white(`${req.method} ${req.url}`)}`,
-      customErrorMessage: (req, res) => `${getColorizer(res)(`(${res.statusCode})`)} ${white(`${req.method} ${req.url} -`)} ${res.err?.message}`,
+      customSuccessMessage: (req, res) =>
+        `${getColorizer(res)(`(${res.statusCode})`)} ${white(`${req.method} ${req.url}`)} ${gray(
+          `(${req.socket.remoteAddress}:${req.socket.remotePort})`
+        )}`,
+      customErrorMessage: (req, res) =>
+        `${getColorizer(res)(`(${res.statusCode})`)} ${white(`${req.method} ${req.url} -`)} ${gray(
+          `(${req.socket.remoteAddress}:${req.socket.remotePort})`
+        )} ${res.err?.message}`,
       ...createInlineConfig(level),
     }))
     .with(LogFormat.DETAILED, () => createDetailedConfig(level))
