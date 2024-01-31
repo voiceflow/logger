@@ -14,9 +14,9 @@
   "dependencies": {
     "colorette": "2.0.19",
     "lodash.merge": "4.6.2",
-    "pino": "8.7.0",
-    "pino-http": "8.2.1",
-    "pino-pretty": "9.1.1",
+    "pino": "8.17.2",
+    "pino-http": "8.6.1",
+    "pino-pretty": "9.4.1",
     "ts-pattern": "^4.0.5"
   },
   "devDependencies": {
