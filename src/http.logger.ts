@@ -17,6 +17,7 @@ export const createHTTPConfig = ({ format, level }: LoggerOptions): Options => (
     if (isErrorResponse(res)) return LogLevel.ERROR;
     return LogLevel.INFO;
   },
+  wrapSerializers: true,
 
   ...match<LogFormat, Options>(format)
     .with(LogFormat.INLINE, () => ({
