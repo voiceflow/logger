@@ -1,18 +1,18 @@
-import { SerializedError, SerializedRequest, SerializedResponse } from 'pino';
+import type { Serializer } from './serializer.interface';
 
-export const MinimalSerializer = {
-  req: (req: SerializedRequest) => ({
+export const MinimalSerializer: Serializer = {
+  req: (req) => ({
     method: req.method,
-    url: req.url,
+    url: req.raw.originalUrl ?? req.url,
     query: req.query,
     params: req.params,
     remoteAddress: req.remoteAddress,
     remotePort: req.remotePort,
   }),
-  res: (res: SerializedResponse) => ({
+  res: (res) => ({
     statusCode: res.statusCode,
   }),
-  err: (err: SerializedError) => ({
+  err: (err) => ({
     type: err.type,
     message: err.message,
     stack: err.stack,
