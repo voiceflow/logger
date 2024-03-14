@@ -1,4 +1,6 @@
 /* eslint-disable sonarjs/no-nested-template-literals */
+import type { IncomingMessage } from 'node:http';
+
 import { gray, white } from 'colorette';
 import pinoHttp, { Options } from 'pino-http';
 import { match } from 'ts-pattern';
@@ -19,16 +21,16 @@ export const createHTTPConfig = ({ format, level }: LoggerOptions): Options => (
   },
   wrapSerializers: true,
 
-  ...match<LogFormat, Options>(format)
+  ...match<LogFormat, Options<IncomingMessage & { originalUrl?: string }>>(format)
     .with(LogFormat.INLINE, () => ({
       customSuccessMessage: (req, res) =>
-        `${getColorizer(res)(`(${res.statusCode})`)} ${white(`${req.method} ${req.url}`)} ${gray(
+        `${getColorizer(res)(`(${res.statusCode})`)} ${white(`${req.method} ${req.originalUrl ?? req.url}`)} ${gray(
           `(${req.socket.remoteAddress}:${req.socket.remotePort})`
         )}`,
       customErrorMessage: (req, res) =>
-        `${getColorizer(res)(`(${res.statusCode})`)} ${white(`${req.method} ${req.url} -`)} ${gray(
+        `${getColorizer(res)(`(${res.statusCode})`)} ${white(`${req.method} ${req.originalUrl ?? req.url}`)} ${gray(
           `(${req.socket.remoteAddress}:${req.socket.remotePort})`
-        )} ${res.err?.message}`,
+        )} - ${res.err?.message}`,
       ...createInlineConfig(level),
     }))
     .with(LogFormat.DETAILED, () => createDetailedConfig(level))
