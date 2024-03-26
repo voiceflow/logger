@@ -1,15 +1,16 @@
 version: 2.1
 
 orbs:
-  vfcommon: voiceflow/common@0.15.1
+  vfcommon: voiceflow/common@0.48.0
   sonarcloud: sonarsource/sonarcloud@2.0.0
 
 jobs:
   test:
-    executor: vfcommon/default-executor
+    executor: vfcommon/code-test-executor-node-20
     steps:
       - checkout
-      - vfcommon/install_node_modules
+      - vfcommon/install_node_modules:
+          cache_prefix: v1
       - attach_workspace:
           at: ~/voiceflow
       - vfcommon/lint_report:
