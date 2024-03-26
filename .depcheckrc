@@ -20,6 +20,7 @@
     "husky",
     "istanbul",
     "lint-staged",
-    "pino-pretty"
+    "pino-pretty",
+    "rimraf"
   ]
 }
