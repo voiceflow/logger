@@ -44,9 +44,13 @@
     "mocha": "10.0.0",
     "nyc": "^15.1.0",
     "prettier": "2.7.1",
+    "rimraf": "5.0.0",
     "ts-mocha": "10.0.0",
     "tsc-alias": "1.7.0",
     "typescript": "4.8.3"
+  },
+  "engines": {
+    "node": "20"
   },
   "files": [
     "build/"
@@ -57,11 +61,12 @@
   ],
   "license": "ISC",
   "main": "build/main.js",
+  "packageManager": "yarn@3.2.1",
   "prettier": "@voiceflow/prettier-config",
   "repository": "git@github.com:voiceflow/logger.git",
   "scripts": {
     "build": "yarn clean && tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
-    "clean": "rimraf build",
+    "clean": "yarn rimraf build",
     "commit": "cz",
     "eslint-output": "eslint-output",
     "lint": "eslint '**/*.{js,ts}'",
@@ -75,5 +80,9 @@
     "test:single": "NODE_ENV=test ts-mocha --paths --config ./config/test/.mocharc.yml",
     "test:unit": "NODE_ENV=test nyc --report-dir=nyc_coverage_unit ts-mocha --paths --config ./config/test/.mocharc.yml 'test/**/*.unit.ts'"
   },
-  "types": "build/main.d.ts"
+  "types": "build/main.d.ts",
+  "volta": {
+    "node": "20.10.0",
+    "yarn": "3.2.1"
+  }
 }

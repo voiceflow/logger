@@ -1,23 +1,14 @@
-import { SerializedError, SerializedRequest, SerializedResponse } from 'pino';
+import { MinimalSerializer } from './minimal';
+import type { Serializer } from './serializer.interface';
 
-export const MaximalSerializer = {
-  req: (req: SerializedRequest) => ({
-    id: req.id,
-    method: req.method,
-    url: req.url,
-    query: req.query,
-    params: req.params,
+export const MaximalSerializer: Serializer = {
+  req: (req) => ({
+    ...MinimalSerializer.req(req),
     headers: Object.fromEntries(Object.entries(req.headers).filter(([key]) => key === 'authorization')),
-    remoteAddress: req.remoteAddress,
-    remotePort: req.remotePort,
   }),
-  res: (res: SerializedResponse) => ({
-    statusCode: res.statusCode,
+  res: (res) => ({
+    ...MinimalSerializer.res(res),
     headers: res.headers,
   }),
-  err: (err: SerializedError) => ({
-    type: err.type,
-    message: err.message,
-    stack: err.stack,
-  }),
+  err: (err) => MinimalSerializer.err(err),
 };
