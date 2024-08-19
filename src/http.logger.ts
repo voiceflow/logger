@@ -18,7 +18,7 @@ export const createHTTPConfig = ({ format, level }: LoggerOptions): Options => (
     if (isWarnResponse(res)) return LogLevel.WARN;
     if (isErrorResponse(res)) return LogLevel.ERROR;
     if (isHealthRequest(req)) return LogLevel.TRACE;
-    return LogLevel.INFO;
+    return LogLevel.DEBUG;
   },
   wrapSerializers: true,
 
